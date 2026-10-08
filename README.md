@@ -105,3 +105,24 @@ swift test -Xswiftc -plugin-path -Xswiftc /Library/Developer/CommandLineTools/us
 ## Releasing to the Mac App Store
 
 See [docs/app-store.md](docs/app-store.md).
+
+## Acknowledgements
+
+Link Stripper itself contains no third-party code: the app uses only Apple's system
+frameworks and the Swift runtime that ships with macOS. It is built with these open-source
+projects, with thanks to their authors:
+
+| Project | Used for | License |
+| --- | --- | --- |
+| [Swift](https://www.swift.org) | Language, compiler and standard library | Apache 2.0 with Runtime Library Exception |
+| [Swift Testing](https://github.com/swiftlang/swift-testing) | Unit tests | Apache 2.0 with Runtime Library Exception |
+| [XcodeGen](https://github.com/yonaskolb/XcodeGen) | Generating `LinkStripper.xcodeproj` from `project.yml` | MIT |
+| [librsvg](https://gitlab.gnome.org/GNOME/librsvg) (`rsvg-convert`) | Rendering the icon SVGs to PNG | LGPL 2.1 or later |
+| [Python](https://www.python.org) | Running `Resources/banana.py`, which draws the icons | PSF License |
+
+None of these tools are distributed with the app.
+
+## License
+
+Link Stripper is released under the [MIT License](LICENSE). The banana artwork in
+`Resources/` is covered by the same license.
