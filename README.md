@@ -69,6 +69,10 @@ Quit Stripper from its menu, turn off Launch at Login first if you enabled it, t
 Tracking rules live in [`Sources/StripperCore/TrackingRules.swift`](Sources/StripperCore/TrackingRules.swift);
 validation and cleaning are in [`URLCleaner.swift`](Sources/StripperCore/URLCleaner.swift).
 
+The app icon is drawn by [`Resources/banana.py`](Resources/banana.py), which writes
+`Resources/AppIcon.svg`; `Resources/make-icon.sh` turns that into `AppIcon.icns`
+(needs `brew install librsvg`). The generated files are committed.
+
 Run the tests with Xcode selected (`xcode-select -s /Applications/Xcode.app`):
 
 ```bash
