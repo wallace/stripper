@@ -5,7 +5,10 @@ import math, sys
 # Usage: python3 Resources/banana.py -10 36 0.50 0.40 > Resources/AppIcon.svg
 #   args: curve (negative = curves up), rotation in degrees, and how far the
 #   left and right sides are peeled (fraction of the banana from the tip).
+#   Add --menubar for the single-colour menu bar glyph: solid peel, outlined
+#   fruit, cropped to the banana.
 b, rot, tL, tR = (float(a) for a in sys.argv[1:5])
+MENUBAR = "--menubar" in sys.argv
 P0, P1, P2 = (54, 13), (54 - 2*b, 53), (54, 93)
 SC, CEN = 8.9, (536, 500)
 cr, sr = math.cos(math.radians(rot)), math.sin(math.radians(rot))
@@ -87,6 +90,36 @@ out.append(f'<path d="M{f(A)} Q{f(mA)} {f(D)} Q{f(lip)} {f(C)} Q{f(mB)} {f(B)} Z
 h = lambda p, q, k: (p[0] + (q[0]-p[0])*k, p[1] + (q[1]-p[1])*k)
 out.append(f'<path d="M{f(A)} Q{f(h(A, mA, 1))} {f(h(A, D, 0.5))} L{f(h(B, C, 0.5))} Q{f(h(B, mB, 1))} {f(B)} Z" fill="#F4C02A"/>')
 
-print('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">')
-print('<rect x="100" y="100" width="824" height="824" rx="185" fill="#2A78C8"/>')
+def bbox(paths, pad):
+    """Bounding box of our generated paths (absolute M/L/C/Q/Z), sampling curves."""
+    import re
+    xs, ys = [], []
+    for d in paths:
+        toks = re.findall(r"[MLCQZ]|-?[\d.]+", d)
+        cur, i, cmd = (0, 0), 0, None
+        while i < len(toks):
+            if toks[i] in "MLCQZ": cmd = toks[i]; i += 1; continue
+            n = {"M": 1, "L": 1, "Q": 2, "C": 3}[cmd]
+            pts = [(float(toks[i + 2*k]), float(toks[i + 2*k + 1])) for k in range(n)]
+            i += 2*n
+            for k in range(11):
+                t = k/10
+                if n == 1: p = pts[0]
+                elif n == 2: p = tuple((1-t)**2*cur[j] + 2*t*(1-t)*pts[0][j] + t*t*pts[1][j] for j in (0, 1))
+                else: p = tuple((1-t)**3*cur[j] + 3*t*(1-t)**2*pts[0][j] + 3*t*t*(1-t)*pts[1][j] + t**3*pts[2][j] for j in (0, 1))
+                xs.append(p[0]); ys.append(p[1])
+            cur = pts[-1]
+    return min(xs) - pad, min(ys) - pad, max(xs) - min(xs) + 2*pad, max(ys) - min(ys) + 2*pad
+
+if MENUBAR:
+    import re
+    del out[1]                                   # fruit shading
+    out = [re.sub(r'fill="[^"]+"', 'fill="#000"', l) for l in out]
+    stroke = 44
+    out[0] = out[0].replace('fill="#000"', f'fill="none" stroke="#000" stroke-width="{stroke}" stroke-linejoin="round"')
+    x, y, w, h = bbox(re.findall(r' d="([^"]+)"', "\n".join(out)), stroke/2)
+    print(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{x:.0f} {y:.0f} {w:.0f} {h:.0f}" width="{w:.0f}" height="{h:.0f}">')
+else:
+    print('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">')
+    print('<rect x="100" y="100" width="824" height="824" rx="185" fill="#2A78C8"/>')
 print("\n".join(out)); print('</svg>')

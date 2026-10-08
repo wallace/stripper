@@ -26,8 +26,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         defaults.register(defaults: [Keys.enabled: true, Keys.notifications: false])
 
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        statusItem.button?.image = NSImage(systemSymbolName: "link.badge.plus", accessibilityDescription: "Stripper")
-        statusItem.button?.image?.isTemplate = true
+        // Banana glyph from the app bundle; falls back to an SF Symbol under `swift run`.
+        let icon = NSImage(named: "MenuBarIcon")
+            ?? NSImage(systemSymbolName: "link.badge.plus", accessibilityDescription: nil)
+        icon?.isTemplate = true
+        icon?.accessibilityDescription = "Stripper"
+        statusItem.button?.image = icon
         buildMenu()
 
         monitor.isEnabled = defaults.bool(forKey: Keys.enabled)

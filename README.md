@@ -43,7 +43,7 @@ cp -R build/Stripper.app /Applications/
 open /Applications/Stripper.app
 ```
 
-Stripper runs in the menu bar (link icon) with no Dock icon. The menu has these items:
+Stripper runs in the menu bar (banana icon) with no Dock icon. The menu has these items:
 
 | Item | What it does |
 | --- | --- |
@@ -69,8 +69,8 @@ Quit Stripper from its menu, turn off Launch at Login first if you enabled it, t
 Tracking rules live in [`Sources/StripperCore/TrackingRules.swift`](Sources/StripperCore/TrackingRules.swift);
 validation and cleaning are in [`URLCleaner.swift`](Sources/StripperCore/URLCleaner.swift).
 
-The app icon is drawn by [`Resources/banana.py`](Resources/banana.py), which writes
-`Resources/AppIcon.svg`; `Resources/make-icon.sh` turns that into `AppIcon.icns`
+The app icon and menu bar glyph are drawn by [`Resources/banana.py`](Resources/banana.py);
+`Resources/make-icon.sh` regenerates `AppIcon.icns` and `MenuBarIcon.png`
 (needs `brew install librsvg`). The generated files are committed.
 
 Run the tests with Xcode selected (`xcode-select -s /Applications/Xcode.app`):
