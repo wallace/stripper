@@ -8,6 +8,8 @@ from links you copy, replacing the clipboard contents with the clean link.
 https://example.com/post?id=7&utm_source=twitter&fbclid=abc  →  https://example.com/post?id=7
 ```
 
+![Copying a tracking link: the menu bar banana flashes yellow and a "Link cleaned" notification shows the clean link](docs/demo.gif)
+
 - Only acts when the **entire** clipboard is a single valid `http`/`https` URL, meaning a
   plain GET link. Prose containing a link and `mailto:`, `file:`, `javascript:` and other
   schemes are left alone.
