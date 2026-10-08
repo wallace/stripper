@@ -43,7 +43,8 @@ cp -R build/Stripper.app /Applications/
 open /Applications/Stripper.app
 ```
 
-Stripper runs in the menu bar (banana icon) with no Dock icon. The menu has these items:
+Stripper runs in the menu bar (banana icon) with no Dock icon. The banana flashes in
+colour each time a link is cleaned. The menu has these items:
 
 | Item | What it does |
 | --- | --- |

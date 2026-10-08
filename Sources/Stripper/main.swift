@@ -15,6 +15,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem!
     private var cleanedCount = 0
     private var lastResult: CleanResult?
+    private var icon: NSImage?
+    private var flashIcon: NSImage?
+    private var flashEnd: DispatchWorkItem?
 
     private let enabledItem = NSMenuItem(title: "Clean Copied Links", action: #selector(toggleEnabled), keyEquivalent: "")
     private let notifyItem = NSMenuItem(title: "Show Notifications", action: #selector(toggleNotifications), keyEquivalent: "")
@@ -27,10 +30,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         // Banana glyph from the app bundle; falls back to an SF Symbol under `swift run`.
-        let icon = NSImage(named: "MenuBarIcon")
+        icon = NSImage(named: "MenuBarIcon")
             ?? NSImage(systemSymbolName: "link.badge.plus", accessibilityDescription: nil)
         icon?.isTemplate = true
         icon?.accessibilityDescription = "Stripper"
+        flashIcon = NSImage(named: "MenuBarIconColor")
+        flashIcon?.accessibilityDescription = "Stripper: link cleaned"
         statusItem.button?.image = icon
         buildMenu()
 
@@ -73,9 +78,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         cleanedCount += 1
         lastResult = result
         refreshMenu()
+        flashMenuBarIcon()
         if defaults.bool(forKey: Keys.notifications) {
             notifier.notify(result)
         }
+    }
+
+    /// Shows the full-colour banana for a moment as feedback that a link was cleaned.
+    private func flashMenuBarIcon() {
+        guard let flashIcon, let button = statusItem.button else { return }
+        flashEnd?.cancel()
+        button.image = flashIcon
+        let end = DispatchWorkItem { [weak self] in self?.statusItem.button?.image = self?.icon }
+        flashEnd = end
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2, execute: end)
     }
 
     @objc private func toggleEnabled() {

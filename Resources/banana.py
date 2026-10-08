@@ -6,9 +6,11 @@ import math, sys
 #   args: curve (negative = curves up), rotation in degrees, and how far the
 #   left and right sides are peeled (fraction of the banana from the tip).
 #   Add --menubar for the single-colour menu bar glyph: solid peel, outlined
-#   fruit, cropped to the banana.
+#   fruit, cropped to the banana. --menubar-color gives the full-colour banana
+#   on the same canvas, for flashing when a link is cleaned.
 b, rot, tL, tR = (float(a) for a in sys.argv[1:5])
-MENUBAR = "--menubar" in sys.argv
+COLOR = "--menubar-color" in sys.argv
+MENUBAR = COLOR or "--menubar" in sys.argv
 P0, P1, P2 = (54, 13), (54 - 2*b, 53), (54, 93)
 SC, CEN = 8.9, (536, 500)
 cr, sr = math.cos(math.radians(rot)), math.sin(math.radians(rot))
@@ -113,11 +115,13 @@ def bbox(paths, pad):
 
 if MENUBAR:
     import re
-    del out[1]                                   # fruit shading
-    out = [re.sub(r'fill="[^"]+"', 'fill="#000"', l) for l in out]
+    glyph = [re.sub(r'fill="[^"]+"', 'fill="#000"', l) for i, l in enumerate(out) if i != 1]  # no fruit shading
     stroke = 44
-    out[0] = out[0].replace('fill="#000"', f'fill="none" stroke="#000" stroke-width="{stroke}" stroke-linejoin="round"')
-    x, y, w, h = bbox(re.findall(r' d="([^"]+)"', "\n".join(out)), stroke/2)
+    glyph[0] = glyph[0].replace('fill="#000"', f'fill="none" stroke="#000" stroke-width="{stroke}" stroke-linejoin="round"')
+    # Both variants share the glyph's canvas so swapping them doesn't shift the menu bar.
+    x, y, w, h = bbox(re.findall(r' d="([^"]+)"', "\n".join(glyph)), stroke/2)
+    if not COLOR:
+        out = glyph
     print(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{x:.0f} {y:.0f} {w:.0f} {h:.0f}" width="{w:.0f}" height="{h:.0f}">')
 else:
     print('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">')
