@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
-# Builds Stripper.app (release, ad-hoc signed) into ./build.
+# Builds "Link Stripper.app" (release, ad-hoc signed, not sandboxed) into ./build
+# without needing Xcode. The App Store build uses LinkStripper.xcodeproj instead.
 set -euo pipefail
 cd "$(dirname "$0")"
 
 swift build -c release
 BIN="$(swift build -c release --show-bin-path)/Stripper"
 
-APP="build/Stripper.app"
+APP="build/Link Stripper.app"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp "$BIN" "$APP/Contents/MacOS/Stripper"
-cp Resources/AppIcon.icns Resources/MenuBarIcon*.png "$APP/Contents/Resources/"
+cp Resources/AppIcon.icns Resources/Assets.xcassets/MenuBarIcon*.imageset/*.png "$APP/Contents/Resources/"
 
 cat > "$APP/Contents/Info.plist" <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
@@ -18,8 +19,8 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
 <plist version="1.0">
 <dict>
     <key>CFBundleIdentifier</key><string>io.github.wallace.stripper</string>
-    <key>CFBundleName</key><string>Stripper</string>
-    <key>CFBundleDisplayName</key><string>Stripper</string>
+    <key>CFBundleName</key><string>Link Stripper</string>
+    <key>CFBundleDisplayName</key><string>Link Stripper</string>
     <key>CFBundleExecutable</key><string>Stripper</string>
     <key>CFBundleIconFile</key><string>AppIcon</string>
     <key>CFBundlePackageType</key><string>APPL</string>

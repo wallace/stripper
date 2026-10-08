@@ -1,0 +1,481 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C5B571E327AB3951A6472B5 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33255CB153E1891177B383E /* Notifier.swift */; };
+		2F83C28A0A83326217007573 /* libStripperCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 917B90EB3C61EC66666BD689 /* libStripperCore.a */; };
+		34B8F4062CAD2C44AC46D256 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E617836F1D6186A015715A /* main.swift */; };
+		42F248A612F6B40D15374389 /* ClipboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DD20713CE97226ADCCFA7D /* ClipboardMonitor.swift */; };
+		5F8BCD6339FF8858E7931736 /* TrackingRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C1291346D11D3368F4C0 /* TrackingRules.swift */; };
+		BD1CBC9BD4AC42BF06027388 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 496FD425116229E64CC4D934 /* Assets.xcassets */; };
+		DB35597DA20E335E04694930 /* URLCleaner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F00BFBE580A9A4AC2F4E1 /* URLCleaner.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		279F7DEBBA2329EBBBB89C73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1F1F8EC2CF8AEE61EDC98B3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF0953B01520C2717C934D55;
+			remoteInfo = StripperCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		06E617836F1D6186A015715A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		388F2976F9EB19FB83C4923F /* LinkStripper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkStripper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		496FD425116229E64CC4D934 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		57DD20713CE97226ADCCFA7D /* ClipboardMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardMonitor.swift; sourceTree = "<group>"; };
+		766F00BFBE580A9A4AC2F4E1 /* URLCleaner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLCleaner.swift; sourceTree = "<group>"; };
+		917B90EB3C61EC66666BD689 /* libStripperCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libStripperCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F33255CB153E1891177B383E /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
+		F354C1291346D11D3368F4C0 /* TrackingRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingRules.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0607A7EC482BA6E8E097F770 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F83C28A0A83326217007573 /* libStripperCore.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4550096078649B4D927C1D09 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A4FD5877ED8C8543CA06AB8B /* Stripper */,
+				EA487E6862B102E672A9A874 /* StripperCore */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		5841404494A38A431A238197 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				917B90EB3C61EC66666BD689 /* libStripperCore.a */,
+				388F2976F9EB19FB83C4923F /* LinkStripper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A4FD5877ED8C8543CA06AB8B /* Stripper */ = {
+			isa = PBXGroup;
+			children = (
+				57DD20713CE97226ADCCFA7D /* ClipboardMonitor.swift */,
+				06E617836F1D6186A015715A /* main.swift */,
+				F33255CB153E1891177B383E /* Notifier.swift */,
+			);
+			path = Stripper;
+			sourceTree = "<group>";
+		};
+		B8C6B18A6698E1B831C593C0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				496FD425116229E64CC4D934 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D28D74F0C0E9AD827094FEE2 = {
+			isa = PBXGroup;
+			children = (
+				B8C6B18A6698E1B831C593C0 /* Resources */,
+				4550096078649B4D927C1D09 /* Sources */,
+				5841404494A38A431A238197 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EA487E6862B102E672A9A874 /* StripperCore */ = {
+			isa = PBXGroup;
+			children = (
+				F354C1291346D11D3368F4C0 /* TrackingRules.swift */,
+				766F00BFBE580A9A4AC2F4E1 /* URLCleaner.swift */,
+			);
+			path = StripperCore;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2C163DDE4ED93B817D5CBC82 /* LinkStripper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C5D7A5AE5FE2FCABBE1E175B /* Build configuration list for PBXNativeTarget "LinkStripper" */;
+			buildPhases = (
+				7BE7C072CFC587655267A856 /* Sources */,
+				2AB1A8D89E84BF09EC2400D2 /* Resources */,
+				0607A7EC482BA6E8E097F770 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FFF8AE7D35528D4A4E0DD4FD /* PBXTargetDependency */,
+			);
+			name = LinkStripper;
+			packageProductDependencies = (
+			);
+			productName = LinkStripper;
+			productReference = 388F2976F9EB19FB83C4923F /* LinkStripper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DF0953B01520C2717C934D55 /* StripperCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 39D7CAA25E3EFE887A9AB499 /* Build configuration list for PBXNativeTarget "StripperCore" */;
+			buildPhases = (
+				EBA3392D3E1C9F6B565433E2 /* Sources */,
+				79AC5E576C0A6CAB3234ED7D /* Copy Swift Objective-C Interface Header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StripperCore;
+			packageProductDependencies = (
+			);
+			productName = StripperCore;
+			productReference = 917B90EB3C61EC66666BD689 /* libStripperCore.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E1F1F8EC2CF8AEE61EDC98B3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					2C163DDE4ED93B817D5CBC82 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					DF0953B01520C2717C934D55 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = FFD5FA88618B89CE6B1E1931 /* Build configuration list for PBXProject "LinkStripper" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = D28D74F0C0E9AD827094FEE2;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5841404494A38A431A238197 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DF0953B01520C2717C934D55 /* StripperCore */,
+				2C163DDE4ED93B817D5CBC82 /* LinkStripper */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2AB1A8D89E84BF09EC2400D2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD1CBC9BD4AC42BF06027388 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		79AC5E576C0A6CAB3234ED7D /* Copy Swift Objective-C Interface Header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(DERIVED_SOURCES_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+			);
+			name = "Copy Swift Objective-C Interface Header";
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/include/$(PRODUCT_MODULE_NAME)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ditto \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7BE7C072CFC587655267A856 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42F248A612F6B40D15374389 /* ClipboardMonitor.swift in Sources */,
+				0C5B571E327AB3951A6472B5 /* Notifier.swift in Sources */,
+				34B8F4062CAD2C44AC46D256 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBA3392D3E1C9F6B565433E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F8BCD6339FF8858E7931736 /* TrackingRules.swift in Sources */,
+				DB35597DA20E335E04694930 /* URLCleaner.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FFF8AE7D35528D4A4E0DD4FD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF0953B01520C2717C934D55 /* StripperCore */;
+			targetProxy = 279F7DEBBA2329EBBBB89C73 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4614DA3DA24EDF2790A95A72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
+				CODE_SIGN_ENTITLEMENTS = App/LinkStripper.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.wallace.stripper;
+				PRODUCT_MODULE_NAME = LinkStripper;
+				PRODUCT_NAME = "Link Stripper";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4FFB34A088292D90F79ECD67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		872E4B16E5F65459C805F114 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9F3816F8F95F9E053FA5AD14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
+				CODE_SIGN_ENTITLEMENTS = App/LinkStripper.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.wallace.stripper;
+				PRODUCT_MODULE_NAME = LinkStripper;
+				PRODUCT_NAME = "Link Stripper";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B272EB2975023D1D8ECCCFB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		E11301FA566FEF3D4DD1FCF8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		39D7CAA25E3EFE887A9AB499 /* Build configuration list for PBXNativeTarget "StripperCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				872E4B16E5F65459C805F114 /* Debug */,
+				B272EB2975023D1D8ECCCFB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C5D7A5AE5FE2FCABBE1E175B /* Build configuration list for PBXNativeTarget "LinkStripper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4614DA3DA24EDF2790A95A72 /* Debug */,
+				9F3816F8F95F9E053FA5AD14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FFD5FA88618B89CE6B1E1931 /* Build configuration list for PBXProject "LinkStripper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FFB34A088292D90F79ECD67 /* Debug */,
+				E11301FA566FEF3D4DD1FCF8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E1F1F8EC2CF8AEE61EDC98B3 /* Project object */;
+}

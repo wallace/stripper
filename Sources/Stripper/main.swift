@@ -24,6 +24,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let loginItem = NSMenuItem(title: "Launch at Login", action: #selector(toggleLaunchAtLogin), keyEquivalent: "")
     private let statsItem = NSMenuItem(title: "", action: nil, keyEquivalent: "")
     private let lastItem = NSMenuItem(title: "", action: #selector(copyOriginal), keyEquivalent: "")
+    private let accessItem = NSMenuItem(title: "", action: #selector(explainClipboardAccess), keyEquivalent: "")
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         defaults.register(defaults: [Keys.enabled: true, Keys.notifications: false])
@@ -33,9 +34,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         icon = NSImage(named: "MenuBarIcon")
             ?? NSImage(systemSymbolName: "link.badge.plus", accessibilityDescription: nil)
         icon?.isTemplate = true
-        icon?.accessibilityDescription = "Stripper"
+        icon?.accessibilityDescription = "Link Stripper"
         flashIcon = NSImage(named: "MenuBarIconColor")
-        flashIcon?.accessibilityDescription = "Stripper: link cleaned"
+        flashIcon?.accessibilityDescription = "Link Stripper: link cleaned"
         statusItem.button?.image = icon
         buildMenu()
 
@@ -49,15 +50,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = NSMenu()
         statsItem.isEnabled = false
         lastItem.isHidden = true
-        for item in [enabledItem, notifyItem, loginItem, lastItem] { item.target = self }
+        accessItem.isHidden = true
+        for item in [enabledItem, notifyItem, loginItem, lastItem, accessItem] { item.target = self }
         menu.addItem(statsItem)
         menu.addItem(lastItem)
+        menu.addItem(accessItem)
         menu.addItem(.separator())
         menu.addItem(enabledItem)
         menu.addItem(notifyItem)
         menu.addItem(loginItem)
         menu.addItem(.separator())
-        menu.addItem(NSMenuItem(title: "Quit Stripper", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        menu.addItem(NSMenuItem(title: "Quit Link Stripper", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        menu.delegate = self
         statusItem.menu = menu
     }
 
@@ -67,6 +71,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         loginItem.state = SMAppService.mainApp.status == .enabled ? .on : .off
         statsItem.title = "Links cleaned this session: \(cleanedCount)"
         statusItem.button?.appearsDisabled = !monitor.isEnabled
+        if #available(macOS 15.4, *) {
+            // macOS asks before apps read what other apps copied. Surface it when
+            // we're not on "Allow", since cleaning depends on it.
+            switch NSPasteboard.general.accessBehavior {
+            case .alwaysDeny:
+                accessItem.title = "⚠︎ Clipboard Access Blocked…"
+                accessItem.isHidden = false
+            case .ask:
+                accessItem.title = "Stop Clipboard Prompts…"
+                accessItem.isHidden = false
+            default:
+                accessItem.isHidden = true
+            }
+        }
         if let lastResult {
             lastItem.isHidden = false
             lastItem.title = "Copy Last Original Link"
@@ -140,12 +158,37 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    @objc private func explainClipboardAccess() {
+        let alert = NSAlert()
+        alert.messageText = "Let Link Stripper read copied links"
+        alert.informativeText = """
+            macOS asks before an app reads what you copy in other apps. To clean links \
+            without being asked each time, set Link Stripper to Allow in System Settings › \
+            Privacy & Security › Paste from Other Apps.
+
+            Link Stripper only reads the clipboard when it holds a web link, and nothing \
+            ever leaves your Mac.
+            """
+        alert.addButton(withTitle: "Open System Settings")
+        alert.addButton(withTitle: "Cancel")
+        NSApp.activate()
+        if alert.runModal() == .alertFirstButtonReturn,
+           let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Pasteboard") {
+            NSWorkspace.shared.open(url)
+        }
+    }
+
     private func showNotificationsDeniedAlert() {
         let alert = NSAlert()
-        alert.messageText = "Notifications are turned off for Stripper"
-        alert.informativeText = "Enable them in System Settings › Notifications › Stripper."
+        alert.messageText = "Notifications are turned off for Link Stripper"
+        alert.informativeText = "Turn them on in System Settings › Notifications › Link Stripper."
         alert.runModal()
     }
+}
+
+extension AppDelegate: NSMenuDelegate {
+    // Clipboard access can change in System Settings while we run.
+    func menuWillOpen(_ menu: NSMenu) { refreshMenu() }
 }
 
 let app = NSApplication.shared

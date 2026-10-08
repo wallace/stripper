@@ -1,0 +1,65 @@
+# XcodeGen spec for the App Store build. Regenerate the project after editing:
+#   xcodegen generate
+# The generated LinkStripper.xcodeproj is committed, so XcodeGen is only needed
+# when this file changes.
+name: LinkStripper
+options:
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "6.0"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    # Set your Apple Developer Team ID here, or pick the team in Xcode's
+    # Signing & Capabilities tab.
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Automatic
+targets:
+  StripperCore:
+    type: library.static
+    platform: macOS
+    sources: [Sources/StripperCore]
+  LinkStripper:
+    type: application
+    platform: macOS
+    sources:
+      - Sources/Stripper
+      - Resources/Assets.xcassets
+    dependencies:
+      - target: StripperCore
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Link Stripper
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleName: Link Stripper
+        LSUIElement: true
+        LSApplicationCategoryType: public.app-category.utilities
+        LSMinimumSystemVersion: $(MACOSX_DEPLOYMENT_TARGET)
+        ITSAppUsesNonExemptEncryption: false
+        NSHumanReadableCopyright: Copyright © 2026 Jonathan R. Wallace
+    entitlements:
+      path: App/LinkStripper.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+    settings:
+      base:
+        PRODUCT_NAME: Link Stripper
+        PRODUCT_MODULE_NAME: LinkStripper
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.wallace.stripper
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ENABLE_HARDENED_RUNTIME: YES
+        COMBINE_HIDPI_IMAGES: YES
+        # Images are loaded by name; skip generated asset symbols.
+        ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS: NO
+schemes:
+  LinkStripper:
+    build:
+      targets:
+        LinkStripper: all
+    archive:
+      config: Release

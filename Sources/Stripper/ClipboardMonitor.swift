@@ -44,7 +44,24 @@ final class ClipboardMonitor {
         guard isEnabled else { return }
 
         let types = Set(pasteboard.types ?? [])
-        guard types.isDisjoint(with: Self.ignoredTypes),
+        guard types.isDisjoint(with: Self.ignoredTypes), types.contains(.string) else { return }
+
+        if #available(macOS 15.4, *) {
+            // Ask macOS whether the clipboard looks like a web link without
+            // reading it, so copying anything else never triggers the system's
+            // paste-access prompt and we only ever read links.
+            Task.detached { [weak self] in
+                let patterns = try? await NSPasteboard.general.detectedPatterns(for: [\.probableWebURL])
+                guard patterns?.contains(\.probableWebURL) == true else { return }
+                await self?.cleanClipboard(ifUnchangedSince: count)
+            }
+        } else {
+            cleanClipboard(ifUnchangedSince: count)
+        }
+    }
+
+    private func cleanClipboard(ifUnchangedSince count: Int) {
+        guard pasteboard.changeCount == count,  // clipboard changed again meanwhile
               let string = pasteboard.string(forType: .string),
               let result = cleaner.clean(string)
         else { return }
